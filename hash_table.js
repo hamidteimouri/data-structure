@@ -25,19 +25,29 @@ class HashTable {
 
     get(key) {
         let address = this._hash(key)
-        const  currentBucket = this.data[address];
-        if (currentBucket){
-          for( let i=0;i<currentBucket.length;i++){
-              if(currentBucket[i][0]===key){
-                  return currentBucket[i][1];
-              }
-          }
+        const currentBucket = this.data[address];
+        if (currentBucket) {
+            for (let i = 0; i < currentBucket.length; i++) {
+                if (currentBucket[i][0] === key) {
+                    return currentBucket[i][1];
+                }
+            }
         }
         return undefined;
+    }
+
+    keys() {
+        const keysArray = [];
+        for (let i = 0; i <= this.data.length; i++) {
+            if (this.data[i]) {
+                keysArray.push(this.data[i][0][0]);
+            }
+        }
+        return keysArray;
     }
 }
 
 ht = new HashTable(2)
 ht.set("apple", 7);
 ht.set("Orange", 8);
-console.log(ht.data);
+console.log(ht.keys());
